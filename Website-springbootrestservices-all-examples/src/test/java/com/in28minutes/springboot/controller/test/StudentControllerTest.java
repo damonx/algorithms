@@ -62,20 +62,17 @@ public class StudentControllerTest {
 		// {"id":"Course1","name":"Spring","description":"10 Steps, 25 Examples and 10K Students","steps":["Learn Maven","Import
 		// Project","First Example","Second Example"]}
 
-		JSONAssert.assertEquals(expected, result.getResponse()
-				.getContentAsString(), false);
+		JSONAssert.assertEquals(expected, result.getResponse().getContentAsString(), false);
 	}
 
 	@Test
 	public void createStudentCourse() throws Exception {
-		final Course mockCourse = new Course("1", "Smallest Number", "1", Arrays
-				.asList("1", "2", "3", "4"));
-
 		// studentService.addCourse to respond back with mockCourse
 		Mockito.when(
 				this.studentService.addCourse(Matchers.anyString(), Matchers
 						.any(Course.class)))
-				.thenReturn(mockCourse);
+				.thenReturn(new Course("1", "Smallest Number", "1", Arrays
+						.asList("1", "2", "3", "4")));
 
 		// Send course as body to /students/Student1/courses
 		final RequestBuilder requestBuilder = MockMvcRequestBuilders.post(
