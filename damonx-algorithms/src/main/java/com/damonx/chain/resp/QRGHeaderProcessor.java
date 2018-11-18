@@ -20,7 +20,6 @@ public class QRGHeaderProcessor extends QRGProcessor {
 	public void processQrg(final String modelNumber) {
 		System.out.println("Genrate the header for product: " + modelNumber);
 		this.successor.processQrg(modelNumber);
-
 	}
 
 }
