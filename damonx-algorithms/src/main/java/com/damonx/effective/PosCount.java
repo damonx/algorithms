@@ -1,0 +1,80 @@
+/*
+ * Copyright (c) Fisher and Paykel Appliances.
+ *
+ * This document is copyright. Except for the purpose of fair reviewing, no part
+ * of this publication may be reproduced or transmitted in any form or by any
+ * means, electronic or mechanical, including photocopying, recording, or any
+ * information storage and retrieval system, without permission in writing from
+ * the publisher. Infringers of copyright render themselves liable for
+ * prosecution.
+ */
+package com.damonx.effective;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class PosCount {
+	public int[] position;
+	public int count;
+	public char character;
+
+	public PosCount(final int[] pos, final int count) {
+		this.position = pos;
+		this.count = count;
+	}
+
+	public static void main(final String[] args) {
+		final char[] a = "AACCGCBB".toCharArray();
+		final char[] manipulated = manipulate(a);
+		String result = "";
+		for (final char element : manipulated) {
+			if (element != Character.MIN_VALUE) {
+				result += element;
+			}
+		}
+		System.out.println(result.hashCode() == 0 ? "EMPTY" : result);
+
+	}
+
+	public static char[] manipulate(final char[] str) {
+		final char[] resultChars = new char[str.length];
+		final Map<Character, PosCount> strMap = new HashMap<>();
+		for (int i = 0; i < str.length; i++) {
+			final Character indexChar = Character.valueOf(str[i]);
+			final PosCount posCount = strMap.get(indexChar);
+			if (posCount != null) {
+				posCount.position[i]++;
+				posCount.count++;
+			} else {
+				final int[] pos = new int[str.length];
+				pos[i]++;
+				strMap.put(indexChar, new PosCount(pos, 1));
+			}
+		}
+
+		strMap.forEach((character, poscount) -> {
+			if (poscount.count < 3 || !isArrConsecutive(poscount.position)) {
+				for (int j = 0; j < poscount.position.length; j++) {
+					if (poscount.position[j] != 0) {
+						resultChars[j] = character;
+					}
+				}
+			}
+		});
+
+		return resultChars;
+	}
+
+	public static boolean isArrConsecutive(final int[] arr) {
+		final List<Integer> indexes = new ArrayList<>();
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == 1) {
+				indexes.add(i);
+			}
+		}
+		return indexes.size() >= 3;
+	}
+
+}
