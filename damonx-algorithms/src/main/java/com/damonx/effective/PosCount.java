@@ -15,12 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Remove 3 or more consecutive characters from a string, repeat until there are no more. eg. ABCCCCBBA => ABBBA => AA
- *
- * @author damonx
- *
- */
 public class PosCount {
 	public int[] position;
 	public int count;
@@ -32,19 +26,30 @@ public class PosCount {
 	}
 
 	public static void main(final String[] args) {
-		final char[] a = "ABCCCCBBA".toCharArray();
-		final char[] manipulated = manipulate(a);
-		String result = "";
-		for (final char element : manipulated) {
+		final char[] a = "AAEEECCCDDAA".toCharArray();
+		char[] manipulated = squeezeChar(manipulate(a));
+		if (String.valueOf(manipulated).trim().length() > 2 && isArrDuplicate(squeezeChar(manipulated))) {
+			manipulated = squeezeChar(manipulate(manipulated));
+		}
+		System.out.println(String.valueOf(manipulated).trim().hashCode() == 0 ? "EMPTY" : String.valueOf(manipulated).trim());
+	}
+
+	public static char[] squeezeChar(final char[] arr) {
+		final char[] result = new char[arr.length];
+		int resultIndx = 0;
+		for (final char element : arr) {
 			if (element != Character.MIN_VALUE) {
-				result += element;
+				result[resultIndx] = element;
+				resultIndx++;
 			}
 		}
-		System.out.println(result.hashCode() == 0 ? "EMPTY" : result);
-
+		return result;
 	}
 
 	public static char[] manipulate(final char[] str) {
+		if (str.length <= 2) {
+			return str;
+		}
 		final char[] resultChars = new char[str.length];
 		final Map<Character, PosCount> strMap = new HashMap<>();
 		for (int i = 0; i < str.length; i++) {
@@ -73,6 +78,20 @@ public class PosCount {
 		return resultChars;
 	}
 
+	public static boolean isArrDuplicate(final char[] str) {
+		if (String.valueOf(str).hashCode() == 0) {
+			return false;
+		}
+		for (int i = 0; i < str.length - 1; i++) {
+			for (int j = 1; j < str.length - 1; j++) {
+				if (str[j] == str[i] && str[j + 1] == str[i]) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public static boolean isArrConsecutive(final int[] arr) {
 		final List<Integer> indexes = new ArrayList<>();
 		for (int i = 0; i < arr.length; i++) {
@@ -80,7 +99,16 @@ public class PosCount {
 				indexes.add(i);
 			}
 		}
-		return indexes.size() >= 3;
+		int count = 0;
+		for (int k = 0; k < indexes.size() - 1; k++) {
+			if (indexes.get(k + 1) - indexes.get(k) == 1) {
+				count++;
+			} else {
+				count--;
+			}
+		}
+		return count >= 2;
+
 	}
 
 }
