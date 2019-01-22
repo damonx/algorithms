@@ -15,6 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Remove 3 or more consecutive characters from a string, repeat until there are no more. eg. ABCCCCBBA => ABBBA => AA
+ *
+ * @author damonx
+ *
+ */
 public class PosCount {
 	public int[] position;
 	public int count;
@@ -26,7 +32,7 @@ public class PosCount {
 	}
 
 	public static void main(final String[] args) {
-		final char[] a = "AACCGCBB".toCharArray();
+		final char[] a = "ABCCCCBBA".toCharArray();
 		final char[] manipulated = manipulate(a);
 		String result = "";
 		for (final char element : manipulated) {
