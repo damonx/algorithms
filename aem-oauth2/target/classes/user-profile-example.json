@@ -1,0 +1,20 @@
+{
+  "path": "/home/users/a/nNZl6ouZfBrbxReawJfm/profile",
+  "user": {
+    "authorizableId": "damonx"
+  },
+  "gender_xss": "male",
+  "gender": "male",
+  "aboutMe_xss": "test",
+  "aboutMe": "test",
+  "email_xss": "damonx.xu@spark.co.nz",
+  "email": "damonx.xu@spark.co.nz",
+  "state_xss": "Auckland",
+  "state": "Auckland",
+  "familyName_xss": "Xu",
+  "familyName": "Xu",
+  "country_xss": "NZ",
+  "country": "NZ",
+  "givenName_xss": "Damon",
+  "givenName": "Damon"
+}
