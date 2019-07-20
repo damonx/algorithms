@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<comment>sparkRte Content Package</comment>
+<entry key="createdBy">damonx</entry>
+<entry key="name">spark-rte.ui.apps</entry>
+<entry key="acHandling">merge_preserve</entry>
+<entry key="created">2019-07-20T07:53:56.914+1200</entry>
+<entry key="groupId">com.myco</entry>
+<entry key="version">0.0.1-SNAPSHOT</entry>
+<entry key="requiresRoot">false</entry>
+<entry key="group">sparkdev</entry>
+<entry key="description">Maven Multimodule project for sparkRte.</entry>
+<entry key="artifactId">spark-rte.ui.apps</entry>
+<entry key="path">/etc/packages/sparkdev/spark-rte.ui.apps.zip</entry>
+</properties>

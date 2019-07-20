@@ -1,0 +1,46 @@
+<p data-sly-test="${wcmmode.edit}">Please configure Trouble ShootingWizard component</p>
+<input id="datatroubleshooting" type="hidden" value="">
+<sly data-sly-use.troubleShootingWizard="nz.co.sparkdigital.core.components.TroubleshootingWizardComponent">
+	<div data-sly-test="${troubleShootingWizard.troubleShootingQuestions}"
+		data-sly-list.items="${troubleShootingWizard.troubleShootingQuestions}"
+		class="troubleshootingwizard-comp">
+	
+		<div data-sly-test="${itemsList.index == 0}">
+			<input type="hidden" id="questionFirst" value="${items.troubleshootingQuestionId}">
+		</div>
+		
+		<section
+			class="sp-help-troubleshoot sp-help-component trouble-comp-align">
+			<div id="${items.troubleshootingQuestionId}"
+				class="sp-help-troubleshoot-panel main-panel sp-help-troubleshoot-${items.troubleshootingQuestionId}">
+				<div class="sp-help-ts-panel">
+					<h5 class="sp-help-ts-title">${items.troubleshootingQuestion @ context='html'}</h5>
+					<ul class="sp-help-ts-faq" id="sp-help-ts-accordion">
+						<sly data-sly-list.itemsList="${items.troubleShootingOptionsList}">
+							<li>
+								<div class="tsquestionlink">
+									<a href="${itemsList.troubleshootingPageLink}" data-related="${itemsList.troubleshootingOptionLink}"> 
+									    <span>${itemsList.troubleshootingOption @ context='html'}</span> <i class="sp-help-ts-icon icon-arrow-right"></i>
+										<div class="clearfix"></div>
+									</a>
+								</div>
+								<div class="trouble-shooting-result">
+									${itemsList.troubleShootingResult @ context='html'}
+								</div>
+							</li>
+						</sly>
+					</ul>
+					<div class="clearfix"></div>
+					<div class="sp-help-ts-footnav">
+						<a href="" class="sp-help-ts-prev-link"> 
+						   <i class="icon-arrow-left"></i> <span>Previous</span>
+						</a> 
+						<a href="" class="sp-help-ts-reset-link">Reset</a>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			 </div>
+		</section>
+	</div>
+</sly>
+<input id="tsdata" type="hidden" value="">

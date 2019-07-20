@@ -1,0 +1,180 @@
+.sp-help-troubleshoot{
+    width: 100%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow: hidden;
+    background: #fff;
+}
+.sp-help-troubleshoot .sp-help-ts-title > a {
+    color: #1a87d1;
+}
+.sp-help-troubleshoot ul{
+    list-style-type: none;
+}
+.sp-help-troubleshoot ul,
+.sp-help-troubleshoot li{
+    margin: 0;
+    padding: 0;
+}
+.sp-help-troubleshoot a{
+    text-decoration: none;
+    cursor: pointer;
+    color: #337ab7;
+}
+.sp-help-troubleshoot .trouble-shooting-result p a{
+ color: #337ab7;
+ }
+/*  */
+.sp-help-ts-title{
+    margin: 10px 0 20px;
+    font-size: 21px;
+    color: #333;
+    line-height: 1.4;
+}
+.sp-help-ts-faq li{
+    padding: 0; 
+    border-bottom: 1px solid #cfcfcf;
+    line-height: 1.6;
+    position: relative;
+}
+.sp-help-ts-faq li .tsquestionlink a{
+    display: block;
+    padding: 20px 0;
+}
+.sp-help-ts-faq li a, 
+.sp-help-ts-faq li a:hover,
+.sp-help-ts-faq li a:focus{
+    color: #333;
+    outline: 0;
+}
+.sp-help-ts-faq li span{
+    font-family: 'AvenirNextLTPro-Regular';
+}
+.sp-help-ts-faq li:first-child{
+    border-top: 1px solid #cfcfcf;
+}
+.sp-help-ts-faq li .sp-help-ts-icon{
+    color: #999;
+    text-align: right;
+    display: block;
+    height: auto;
+    position: absolute;
+    right: 0;
+    top: 38.6%;
+    line-height: 1.6;
+}
+.sp-help-ts-faq li span{
+    display: block;
+    float: left;
+    max-width: 90%;
+}
+.troubleshootingwizard-comp {
+margin: 0 0 60px;
+
+    }
+.sp-help-troubleshoot .sp-help-ts-title ul {
+    list-style-type: initial !important;
+    padding-left: 40px;
+}
+
+.trouble-shooting-result ul {
+    list-style-type: initial;
+    padding-left: 40px;
+}
+.trouble-shooting-result li {
+    border-bottom: 0;
+}
+.trouble-shooting-result li:first-child {
+    border-top: 0;
+}
+.trouble-shooting-result li a {
+color: #337ab7; 
+}
+
+/* Start troubleshoot foot nav */
+.sp-help-ts-footnav {
+    margin: 20px 0 0 5px;
+}
+.sp-help-ts-footnav a{
+    display: block;
+    float: left;
+    width: auto;
+    padding: 0 15px 0 0;
+    margin: 0;
+    white-space: nowrap;
+    font: bold 16px/18px AvenirNextLTPro-Regular, Arial;
+}
+.sp-help-ts-footnav .icon-arrow-left{
+    font-size: 19px;
+    line-height: 19.5px;
+    float: left;
+    width: auto;
+}
+.sp-help-ts-footnav .sp-help-ts-prev-link span{
+    float: right;
+    width: auto;
+    margin: 1px 0 0 8px;
+}
+.sp-help-ts-footnav .sp-help-ts-reset-link{
+    border-left: 1px solid #e8e8e8;
+    padding: 1px 0 0 15px;
+}
+.sp-help-ts-footnav a, 
+.sp-help-ts-footnav a:hover,
+.sp-help-ts-footnav a:focus{
+    color: #0096e6;
+    text-decoration: none;
+}
+/* End troubleshoot foot nav */
+
+@media screen and (max-width: 639px){
+    .sp-help-ts-faq li .sp-help-ts-icon{
+        right: 3px;
+    }
+    .sp-help-ts-faq li span{
+        display: block;
+        float: left;
+        max-width: 83%;
+    }
+    .sp-help-ts-title{
+        font-size: 18px;
+    }
+    .sp-help-troubleshoot-top h4{
+        font-size: 24px;
+    }
+    .sp-help-ts-footnav a{
+        font-size: 14px;
+    }
+    .sp-help-ts-footnav .icon-arrow-left{
+        line-height: 20px;
+    }
+}
+@media screen and (min-width: 640px) and (max-width: 939px){
+    .sp-help-ts-faq li .sp-help-ts-icon{
+        right: 12px;
+    }
+    .sp-help-ts-footnav a{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 939px){
+    .sp-help-troubleshoot{
+        width: auto;
+        margin: 0 30px;
+    }
+    .sp-help-ts-faq li span{
+        font-size: 14px;
+    }
+    .trouble-comp-align{
+        margin: 0 40px !important;
+
+    }
+}
+@media screen and (min-width: 940px){
+    .sp-help-ts-faq li .sp-help-ts-icon{
+         right: 20px;
+    }
+    
+}
