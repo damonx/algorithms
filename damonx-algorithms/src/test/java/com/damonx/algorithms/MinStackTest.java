@@ -1,13 +1,3 @@
-/*
- * Copyright (c) Fisher and Paykel Appliances.
- *
- * This document is copyright. Except for the purpose of fair reviewing, no part
- * of this publication may be reproduced or transmitted in any form or by any
- * means, electronic or mechanical, including photocopying, recording, or any
- * information storage and retrieval system, without permission in writing from
- * the publisher. Infringers of copyright render themselves liable for
- * prosecution.
- */
 package com.damonx.algorithms;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +26,6 @@ public class MinStackTest {
 		assertThat(this.stack.getData().size()).isEqualTo(14);
 		assertThat(this.stack.getMins().size()).isEqualTo(2);
 		assertThat(this.stack.getMins()).containsExactly(0, 2);
-
 	}
 
 	@Test
@@ -56,6 +45,5 @@ public class MinStackTest {
 		assertThat(this.stack.getData()).containsExactly(7, 2);
 		assertThat(this.stack.getMins()).containsExactly(0, 1);
 		assertThat(this.stack.getMin()).isEqualTo(2);
-		// fail("Not yet implemented");
 	}
 }
