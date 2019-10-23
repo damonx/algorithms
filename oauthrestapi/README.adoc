@@ -1,4 +1,4 @@
-= Spring REST Service OAuth
+= Spring REST Service over OAuth2
 
 image::https://travis-ci.org/royclarkson/spring-rest-service-oauth.svg[Build Status, link=https://travis-ci.org/royclarkson/spring-rest-service-oauth/]
 
