@@ -32,7 +32,7 @@ public class BookController {
     @Autowired
     private BookRepository repository;
 
-    // Find
+    // Find all
     @GetMapping("/books")
     List<Book> findAll() {
         return repository.findAll();
@@ -48,22 +48,19 @@ public class BookController {
     // Find
     @GetMapping("/books/{id}")
     Book findOne(@PathVariable @Min(1) final Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new BookNotFoundException(id));
+        return repository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
     }
 
     // Save or update
     @PutMapping("/books/{id}")
     Book saveOrUpdate(@RequestBody final Book newBook, @PathVariable final Long id) {
-
         return repository.findById(id)
                 .map(x -> {
                     x.setName(newBook.getName());
                     x.setAuthor(newBook.getAuthor());
                     x.setPrice(newBook.getPrice());
                     return repository.save(x);
-                })
-                .orElseGet(() -> {
+                }).orElseGet(() -> {
                     newBook.setId(id);
                     return repository.save(newBook);
                 });
@@ -72,10 +69,8 @@ public class BookController {
     // update author only
     @PatchMapping("/books/{id}")
     Book patch(@RequestBody final Map<String, String> update, @PathVariable final Long id) {
-
         return repository.findById(id)
                 .map(x -> {
-
                     final String author = update.get("author");
                     if (!StringUtils.isEmpty(author)) {
                         x.setAuthor(author);
@@ -87,11 +82,9 @@ public class BookController {
                         throw new BookUnSupportedFieldPatchException(update.keySet());
                     }
 
-                })
-                .orElseGet(() -> {
+                }).orElseThrow(() -> {
                     throw new BookNotFoundException(id);
                 });
-
     }
 
     @DeleteMapping("/books/{id}")
