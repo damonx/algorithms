@@ -33,14 +33,14 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST, value = "/identity/login", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully logged in"),
-            @ApiResponse(code = 400, message = "Bad request, country code missing"),
+            @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
             @ApiResponse(code = 500, message = "Internal Server Errors")
     })
     public ResponseEntity<AuthenticationResponse> tokenInfo(
-            @RequestParam(value = "username") final String username,
-            @RequestParam(value = "password") final String password,
-            @RequestParam(value = "client") final String client,
-            @RequestParam(value = "redirectUri") final String redirectUri) {
+            @RequestParam(value = "username", required = true) final String username,
+            @RequestParam(value = "password", required = true) final String password,
+            @RequestParam(value = "client", required = true) final String client,
+            @RequestParam(value = "redirectUri", required = true) final String redirectUri) {
 
         final String url = "http://localhost:8083/openam/oauth2/access_token?";
 

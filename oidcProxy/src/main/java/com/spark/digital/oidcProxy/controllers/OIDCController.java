@@ -3,6 +3,10 @@ package com.spark.digital.oidcProxy.controllers;
 import com.spark.digital.oidcProxy.models.AuthenticationResponse;
 import com.spark.digital.oidcProxy.models.UserInfo;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,17 +23,24 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class OIDCController {
 
     /* Authorization endpoint defined in RFC 6749, used to obtain an Authorization Grant from the Resource Owner: Example: */
+    @ApiOperation(value = "Request Authroisation code endpoint", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched authorisation code"),
+            @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
+            @ApiResponse(code = 500, message = "Internal Server Errors")
+    })
     @RequestMapping(method = RequestMethod.POST, value = "/oidc/authorise")
     public void authorise(
-            @RequestParam(value = "clientId") final String clientId,
-            @RequestParam(value = "response_type") final String responseType,
-            @RequestParam(value = "clientSecret") final String clientSecret,
-            @RequestParam(value = "callbackUri") final String callbackUri,
-            @RequestParam(value = "scope") final String scope,
-            @RequestParam(value = "state") final String state)   {
+            @RequestParam(value = "response_type", required = true) final String responseType,
+            @RequestParam(value = "callbackUri", required = true) final String callbackUri,
+            @RequestParam(value = "state", required = true) final String state) {
 
-
+        // TODO: Move them to a configuration file
         final String url = "http://localhost:8083/openam/oauth2/authorize?";
+        final String clientId = "";
+        final String clientSecret = "";
+        final String scope = "";
+
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -56,20 +67,27 @@ public class OIDCController {
     }
 
     /*Token Endpoint defined in RFC 6749, used to obtain an access token from the authorization server Example:*/
+    @ApiOperation(value = "Request access token endpoint", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched access token"),
+            @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
+            @ApiResponse(code = 500, message = "Internal Server Errors")
+    })
     @RequestMapping(method = RequestMethod.POST, value = "/oidc/accessToken")
     public ResponseEntity<AuthenticationResponse> accessToken(
-            @RequestParam(value = "grantType") final String grantType,
-            @RequestParam(value = "clientUsername") final String username,
-            @RequestParam(value = "clientPassword") final String password,
-            @RequestParam(value = "scope") final String scope,
-            @RequestParam(value = "customerUsername") final String customerUsername,
-            @RequestParam(value = "customerPassword") final String customerPassword ) {
+            @RequestParam(value = "customerUsername", required = true) final String customerUsername,
+            @RequestParam(value = "customerPassword", required = true) final String customerPassword) {
 
+        // TODO: Move them to configurations.
         final String url = "http://localhost:8083/openam/oauth2/access_token?";
+        final String clientUsername = "";
+        final String clientPassword = "";
+        final String scope = "openid profile";
+        final String grantType = "password";
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setBasicAuth(username, password);
+        headers.setBasicAuth(clientUsername, clientPassword);
 
         final HttpEntity entity = new HttpEntity(headers);
 
@@ -81,7 +99,7 @@ public class OIDCController {
                 .queryParam("password", customerPassword)
                 .queryParam("scope", scope);
 
-        System.out.println(builder.buildAndExpand().toUri());
+        // System.out.println(builder.buildAndExpand().toUri());
 
         final RestTemplate restTemplate = new RestTemplate();
 
@@ -94,17 +112,16 @@ public class OIDCController {
         return response;
     }
 
-    /*Endpoint not defined in RFC 6749, used to validate tokens, and to retrieve information such as scopes
-      Given an Access Token, a Resource Server can perform an HTTP GET on /oauth2/tokeninfo?access_token=token-id to retrieve a JSON object indicating token_type, expires_in, scope, and the access_token ID.*/
-    @RequestMapping(method = RequestMethod.GET, value = "/oidc/tokenInfo")
-    public void tokenInfo(@RequestParam(value = "accessToken") final String accessToken ) {
-        System.out.println(("Request made to token info service"));
-    }
-
     /* In addition, authorized clients can access end user information through the OpenID Connect 1.0 Userinfo_endpoint*/
+    @ApiOperation(value = "Request user profile info endpoint", response = ResponseEntity.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched user info"),
+            @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
+            @ApiResponse(code = 500, message = "Internal Server Errors")
+    })
     @RequestMapping(method = RequestMethod.GET, value = "/oidc/userInfo")
-    public ResponseEntity<UserInfo> userInfo(@RequestParam(value = "accessToken") final String accessToken ) {
-        System.out.println(("Request made to userInfo service"));
+    public ResponseEntity<UserInfo> userInfo(@RequestParam(value = "accessToken", required = true) final String accessToken ) {
+        // System.out.println(("Request made to userInfo service"));
 
         final String url = "http://localhost:8083/openam/oauth2/userinfo?";
 
@@ -116,8 +133,6 @@ public class OIDCController {
 
         // Query parameters
         final UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
-
-        System.out.println(builder.buildAndExpand().toUri());
 
         final RestTemplate restTemplate = new RestTemplate();
 
