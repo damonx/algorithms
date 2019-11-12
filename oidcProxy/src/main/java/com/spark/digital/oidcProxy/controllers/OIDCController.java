@@ -6,12 +6,12 @@ import com.spark.digital.oidcProxy.models.UserInfo;
 import com.spark.digital.oidcProxy.service.OpenAmOauthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
@@ -69,24 +69,22 @@ public class OIDCController {
     //
     // }
 
-    /*Token Endpoint defined in RFC 6749, used to obtain an access token from the authorization server Example:*/
     @ApiOperation(value = "Request access token endpoint according to RFC 6749", response = ResponseEntity.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully fetched access token"),
             @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
             @ApiResponse(code = 500, message = "Internal Server Errors")
     })
-    @ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/oidc/accessToken")
-    public AccessTokenResponse accessToken(
+    public ResponseEntity<AccessTokenResponse> accessToken(
             @RequestParam(value = "customerUsername", required = true) final String customerUsername,
             @RequestParam(value = "customerPassword", required = true) final String customerPassword,
             @RequestBody final ConnectedClientInfo connectedClientInfo) {
 
-        return openAmOauthService.fetchAccessToken(customerUsername, customerPassword, connectedClientInfo);
+        final AccessTokenResponse accessToken = openAmOauthService.fetchAccessToken(customerUsername, customerPassword, connectedClientInfo);
+        return new ResponseEntity<>(accessToken, HttpStatus.OK);
     }
 
-    /* In addition, authorized clients can access end user information through the OpenID Connect 1.0 Userinfo_endpoint*/
     @ApiOperation(value = "Request user profile info endpoint", response = ResponseEntity.class)
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully fetched user info"),
@@ -94,7 +92,8 @@ public class OIDCController {
             @ApiResponse(code = 500, message = "Internal Server Errors")
     })
     @RequestMapping(method = RequestMethod.GET, value = "/oidc/userInfo")
-    public UserInfo userInfo(@RequestParam(value = "accessToken", required = true) final String accessToken) {
-        return openAmOauthService.fetchUserInfo(accessToken);
+    public ResponseEntity<UserInfo> userInfo(@RequestParam(value = "accessToken", required = true) final String accessToken) {
+        final UserInfo userInfo = openAmOauthService.fetchUserInfo(accessToken);
+        return new ResponseEntity<>(userInfo, HttpStatus.OK);
     }
 }

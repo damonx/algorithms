@@ -5,6 +5,7 @@ import com.spark.digital.oidcProxy.models.ConnectedClientInfo;
 import com.spark.digital.oidcProxy.service.OpenAmOauthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -32,11 +33,12 @@ public class LoginController {
             @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
             @ApiResponse(code = 500, message = "Internal Server Errors")
     })
-    public AccessTokenResponse tokenInfo(
+    public ResponseEntity<AccessTokenResponse> tokenInfo(
             @RequestParam(value = "username", required = true) final String username,
             @RequestParam(value = "password", required = true) final String password,
             @RequestBody final ConnectedClientInfo connectedClientInfo) {
 
-        return openAmOauthService.fetchAccessToken(username, password, connectedClientInfo);
+        final AccessTokenResponse accessToken = openAmOauthService.fetchAccessToken(username, password, connectedClientInfo);
+        return new ResponseEntity<>(accessToken, HttpStatus.OK);
     }
 }
