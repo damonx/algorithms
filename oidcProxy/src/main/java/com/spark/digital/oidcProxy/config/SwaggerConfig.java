@@ -16,13 +16,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class Swagger extends WebMvcConfigurationSupport {
+public class SwaggerConfig extends WebMvcConfigurationSupport {
 
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.spark.digital.oidcProxy.controllers"))
                 .paths(PathSelectors.any())
                 .build().apiInfo(metaData());
     }

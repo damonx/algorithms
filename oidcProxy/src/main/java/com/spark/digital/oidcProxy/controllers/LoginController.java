@@ -1,32 +1,28 @@
 package com.spark.digital.oidcProxy.controllers;
 
-import com.spark.digital.oidcProxy.entity.Client;
-import com.spark.digital.oidcProxy.models.AuthenticationResponse;
-import com.spark.digital.oidcProxy.repository.ClientRepository;
+import com.spark.digital.oidcProxy.models.AccessTokenResponse;
+import com.spark.digital.oidcProxy.models.ConnectedClientInfo;
+import com.spark.digital.oidcProxy.service.OpenAmOauthService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-
 @RestController
 public class LoginController {
 
     @Autowired
-    private ClientRepository clientRepo;
+    private OpenAmOauthService openAmOauthService;
 
     @CrossOrigin(origins = "*")
     @ApiOperation(value = "User login with OpenAM identitiy", response = ResponseEntity.class)
@@ -36,42 +32,11 @@ public class LoginController {
             @ApiResponse(code = 400, message = "Bad request, required parameters are missing"),
             @ApiResponse(code = 500, message = "Internal Server Errors")
     })
-    public ResponseEntity<AuthenticationResponse> tokenInfo(
+    public AccessTokenResponse tokenInfo(
             @RequestParam(value = "username", required = true) final String username,
             @RequestParam(value = "password", required = true) final String password,
-            @RequestParam(value = "client", required = true) final String client,
-            @RequestParam(value = "redirectUri", required = true) final String redirectUri) {
+            @RequestBody final ConnectedClientInfo connectedClientInfo) {
 
-        final String url = "http://localhost:8083/openam/oauth2/access_token?";
-
-        //Get Client credentials from DB
-        final Client clientDetails = clientRepo.findClientByName(client);
-
-        // Set auth header for requesting client
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setBasicAuth(clientDetails.getUsername(), clientDetails.getSecret());
-
-        final HttpEntity<Object> entity = new HttpEntity<>(headers);
-
-        // Query parameters
-        final UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url)
-                // Add query parameter
-                .queryParam("grant_type", "password")
-                .queryParam("username", username)
-                .queryParam("password", password)
-                .queryParam("scope", "openid profile");
-
-        System.out.println(builder.buildAndExpand().toUri());
-
-        final RestTemplate restTemplate = new RestTemplate();
-
-        final ResponseEntity<AuthenticationResponse> response =
-                restTemplate.exchange(builder.buildAndExpand().toUri(), HttpMethod.POST, entity, AuthenticationResponse.class);
-
-        response.getHeaders().getLocation();
-        response.getStatusCode();
-
-        return response;
+        return openAmOauthService.fetchAccessToken(username, password, connectedClientInfo);
     }
 }
