@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  
+  <localRepository>${user.home}/.m2/repository</localRepository>
+  <proxies>
+    <!-- proxy
+     | Specification for one proxy, to be used in connecting to the network.
+     |
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>proxyuser</username>
+      <password>proxypass</password>
+      <host>proxy.host.net</host>
+      <port>80</port>
+      <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+    </proxy>
+    -->
+    <proxy>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>websense.telecom.tcnz.net</host>
+        <port>8080</port>
+        <username>T827056</username>
+        <password>bave6EJa</password>
+    </proxy>
+  </proxies>
+<servers>
+		<server>
+			<id>TomcatServer</id>
+			<username>root</username>
+			<password>123456</password>
+		</server>
+</servers>
+  <mirrors>
+    <!-- mirror
+     | Specifies a repository mirror site to use instead of a given repository. The repository that
+     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+     |
+    <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>repositoryId</mirrorOf>
+      <name>Human Readable Name for this Mirror.</name>
+      <url>http://my.repository.com/repo/path</url>
+    </mirror>
+     -->
+    <mirror>
+        <id>central-proxy</id>
+        <name>Local proxy of central repo</name>
+	    <url>http://cicdnexus.telecom.tcnz.net/repository/maven-central/</url>
+        <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+	<profiles>
+		<profile>
+			<id>nexus</id>
+			<repositories>
+				<repository>
+					<id>Public</id>
+					<name>remote nexus public</name>
+					<url>http://203.187.186.135:18081/nexus/content/groups/public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>thirdparty</id>
+					<name>remote nexus 3rd</name>
+					<url>http://203.187.186.135:18081/nexus/content/repositories/thirdparty/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+		</profile>
+    </profiles>
+     <activeProfiles>
+         <!--<activeProfile>nexus1</activeProfile>-->
+  </activeProfiles>
+
+</settings>
+

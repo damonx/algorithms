@@ -1,0 +1,4 @@
+#proxy=http://T827056:bave5EJa@websense.telecom.tcnz.net:8080
+#https-proxy=http://T827056:bave5EJa@websense.telecom.tcnz.net:8080
+#strict-ssl=false
+#registry=http://registry.npmjs.org/
