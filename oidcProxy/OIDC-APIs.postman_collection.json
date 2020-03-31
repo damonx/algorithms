@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "08427e1f-6c83-40a7-8681-f0ea979322e1",
+		"name": "OIDC-APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DESL-ACCESSTOKEN-INT05",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jy6NyZfAwi4eE4l7",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SparkApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-id",
+						"value": "9129b9cf-45d4-43ab-ae00-8a5359365ec0",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-secret",
+						"value": "R4kF8oD7vX6bN5rK7yP3dR0dN5jB1fO3wF8fW4lK1uC1tX7iB5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "Sakshi.dhomne2@spark.co.nz",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "telecom1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api-int05.spark.co.nz/v1/user/oidc/accessToken",
+					"protocol": "https",
+					"host": [
+						"api-int05",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"user",
+						"oidc",
+						"accessToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DESL-REVOKE-INT05",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jy6NyZfAwi4eE4l7",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SparkApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-id",
+						"value": "9129b9cf-45d4-43ab-ae00-8a5359365ec0",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-secret",
+						"value": "R4kF8oD7vX6bN5rK7yP3dR0dN5jB1fO3wF8fW4lK1uC1tX7iB5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "e975d9f5-3e8b-4de7-8fbd-90e510339bef",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api-int05.spark.co.nz/v1/user/oidc/revoke",
+					"protocol": "https",
+					"host": [
+						"api-int05",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"user",
+						"oidc",
+						"revoke"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DESL-USERINFO-INT05",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "0250370b-ffc2-474a-a7ee-efc7ad1a6fbf",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ibm-client-id",
+						"value": "9129b9cf-45d4-43ab-ae00-8a5359365ec0",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-secret",
+						"value": "R4kF8oD7vX6bN5rK7yP3dR0dN5jB1fO3wF8fW4lK1uC1tX7iB5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://api-int05.spark.co.nz/v1/user/oidc/userInfo",
+					"protocol": "https",
+					"host": [
+						"api-int05",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"user",
+						"oidc",
+						"userInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DESL-LOGOUT-INT05",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-ibm-client-id",
+						"type": "text",
+						"value": "9129b9cf-45d4-43ab-ae00-8a5359365ec0"
+					},
+					{
+						"key": "x-ibm-client-secret",
+						"type": "text",
+						"value": "R4kF8oD7vX6bN5rK7yP3dR0dN5jB1fO3wF8fW4lK1uC1tX7iB5"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "https://api-int05.spark.co.nz/v1/user/oidc/logout?idToken=dfasdasdf",
+					"protocol": "https",
+					"host": [
+						"api-int05",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"user",
+						"oidc",
+						"logout"
+					],
+					"query": [
+						{
+							"key": "idToken",
+							"value": "dfasdasdf"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DESL-SocialLogin - INT05",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "SparkApp",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "jy6NyZfAwi4eE4l7",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-id",
+						"value": "9129b9cf-45d4-43ab-ae00-8a5359365ec0",
+						"type": "text"
+					},
+					{
+						"key": "x-ibm-client-secret",
+						"value": "R4kF8oD7vX6bN5rK7yP3dR0dN5jB1fO3wF8fW4lK1uC1tX7iB5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "socialToken",
+							"value": "EAACj6Cduo9kBAIDFFskvJ8qL6DbxQhMIsKHKvXxpIpsMWjXcKJeJRpERcFiVgLZAJPali3nGioPjhZAYub5ZCH01wucqGb2MOfqsm2u1CZAxCOGpBF378I2UC6C2LCGJYZBgRDKEm5NZCiZBDx5lp6rePUBmIiOYTBHbmVHY1XYDZA263tGS4OU7oFqwMJAnVr2z1xaTZA62tcFG3SVPDIhMb",
+							"type": "text"
+						},
+						{
+							"key": "socialProvider",
+							"value": "Facebook",
+							"type": "text"
+						},
+						{
+							"key": "clientName",
+							"value": "SparkApp",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api-int05.spark.co.nz/v1/user/oidc/social",
+					"protocol": "https",
+					"host": [
+						"api-int05",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"user",
+						"oidc",
+						"social"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DESL-REFRESHACCESSTOKEN-INT05",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "jy6NyZfAwi4eE4l7",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "SparkApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "x-ibm-client-id",
+						"type": "text",
+						"value": "9129b9cf-45d4-43ab-ae00-8a5359365ec0"
+					},
+					{
+						"key": "x-ibm-client-secret",
+						"type": "text",
+						"value": "R4kF8oD7vX6bN5rK7yP3dR0dN5jB1fO3wF8fW4lK1uC1tX7iB5"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "mpriebee@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "telecom1",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "42338d5d-0959-4cbc-8b3b-8d1a658e82b5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://api-int05.spark.co.nz/v1/user/oidc/accessToken",
+					"protocol": "https",
+					"host": [
+						"api-int05",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"user",
+						"oidc",
+						"accessToken"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
