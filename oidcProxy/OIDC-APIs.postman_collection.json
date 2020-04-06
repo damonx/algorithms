@@ -406,6 +406,58 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "OIDC-LOCAL-ADMIN-REVOKEALL-INT05",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "zMG543MJa0twdF3J",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "DESLAdmin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "sparkId",
+							"value": "SSC1555381442996828",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://oidc-admin-service-desl-int05.npe01.ocp.internal.spark.co.nz/v1/admin/oidc/revokeAll",
+					"protocol": "http",
+					"host": [
+						"oidc-admin-service-desl-int05",
+						"npe01",
+						"ocp",
+						"internal",
+						"spark",
+						"co",
+						"nz"
+					],
+					"path": [
+						"v1",
+						"admin",
+						"oidc",
+						"revokeAll"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
