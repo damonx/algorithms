@@ -64,7 +64,6 @@ public class AemOauthServiceImpl implements AemOauthService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		return AemGetTokenResponse.ofEmpty();
 	}
 	
