@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AemOauthServiceImpl implements AemOauthService {
 
 	@Value("${aem.oauth.accesstoken.url}")
-        private String accessTokenRestEndpoint;
+    private String accessTokenRestEndpoint;
 	
 	@Value("${aem.oauth.profile.url}")
 	private String userProfileUrl;
