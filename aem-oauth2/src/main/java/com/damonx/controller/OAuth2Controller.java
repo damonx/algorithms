@@ -11,9 +11,8 @@ import com.damonx.oauth.service.AemOauthService;
 
 @Controller
 public class OAuth2Controller {
-	
-	@Autowired
-	private AemOauthService aemOauthService;
+    @Autowired
+    private AemOauthService aemOauthService;
 
     @GetMapping("/test")
     @ResponseBody
@@ -21,5 +20,4 @@ public class OAuth2Controller {
          final String accessToken = aemOauthService.getAemAccessToken(code).getAccessToken();
          return aemOauthService.lookupUser(accessToken);
     }
-
 }
