@@ -3,21 +3,25 @@ package com.damonx.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GreetingInfo {
+public class GreetingInfo
+{
 
     private final long id;
     private final String content;
 
-    public GreetingInfo(long id, String content) {
+    public GreetingInfo(final long id, final String content)
+    {
         this.id = id;
         this.content = content;
     }
 
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-    public String getContent() {
+    public String getContent()
+    {
         return content;
     }
 

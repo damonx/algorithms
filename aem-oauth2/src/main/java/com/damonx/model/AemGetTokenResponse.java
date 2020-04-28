@@ -4,24 +4,28 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AemGetTokenResponse {
-	
-	public static AemGetTokenResponse ofEmpty() {
-		return new AemGetTokenResponse();
-	}
+public class AemGetTokenResponse
+{
 
-	@JsonProperty("access_token")
-	private String accessToken;
+    public static AemGetTokenResponse ofEmpty()
+    {
+        return new AemGetTokenResponse();
+    }
 
-	@JsonProperty("expires_in")
-	private String expiresIn;
+    @JsonProperty("access_token")
+    private String accessToken;
 
-	public String getAccessToken() {
-		return accessToken;
-	}
+    @JsonProperty("expires_in")
+    private String expiresIn;
 
-	public String getExpiresIn() {
-		return expiresIn;
-	}
+    public String getAccessToken()
+    {
+        return accessToken;
+    }
+
+    public String getExpiresIn()
+    {
+        return expiresIn;
+    }
 
 }

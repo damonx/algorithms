@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Built-By: damonx
-Build-Jdk: 9.0.1
+Built-By: t827056
+Build-Jdk: 11.0.5
 Implementation-Title: aem-oauth2
 Implementation-Version: 1.0
 Implementation-Vendor-Id: com.neo
-Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
- ot-starter-parent/aem-oauth2
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/aem-oauth2
 Created-By: Maven Integration for Eclipse
 

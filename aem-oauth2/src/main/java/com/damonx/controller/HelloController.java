@@ -1,23 +1,25 @@
 package com.damonx.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
+import com.damonx.model.GreetingInfo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.damonx.model.GreetingInfo;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
-public class HelloController {
+public class HelloController
+{
 
     private static final String template = "Hello, %s! URL: %s";
     private final AtomicLong counter = new AtomicLong();
-    
+
     @GetMapping("/hello-world")
     @ResponseBody
-    public GreetingInfo sayHello(@RequestParam(name="name", required=false, defaultValue="Stranger") String name) {
+    public GreetingInfo sayHello(@RequestParam(name = "name", required = false, defaultValue = "Stranger") final String name)
+    {
         return new GreetingInfo(counter.incrementAndGet(), String.format(template, name));
     }
 

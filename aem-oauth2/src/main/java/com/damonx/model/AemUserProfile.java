@@ -3,74 +3,89 @@ package com.damonx.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class AemUserProfile {
+public class AemUserProfile
+{
+    private String path;
+    private String gender;
+    private String email;
+    private String familyName;
+    private String givenName;
+    private String state;
+    private String country;
 
-	private String path;
-	private String gender;
-	private String email;
-	private String familyName;
-	private String givenName;
-	private String state;
-	private String country;
+    public static AemUserProfile ofEmpty()
+    {
+        return new AemUserProfile();
+    }
 
-	public static AemUserProfile ofEmpty() {
-		return new AemUserProfile();
-	}
-	
-	public String getPath() {
-		return path;
-	}
+    public String getPath()
+    {
+        return path;
+    }
 
-	public void setPath(String path) {
-		this.path = path;
-	}
+    public void setPath(final String path)
+    {
+        this.path = path;
+    }
 
-	public String getGender() {
-		return gender;
-	}
+    public String getGender()
+    {
+        return gender;
+    }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+    public void setGender(final String gender)
+    {
+        this.gender = gender;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail()
+    {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(final String email)
+    {
+        this.email = email;
+    }
 
-	public String getFamilyName() {
-		return familyName;
-	}
+    public String getFamilyName()
+    {
+        return familyName;
+    }
 
-	public void setFamilyName(String familyName) {
-		this.familyName = familyName;
-	}
+    public void setFamilyName(final String familyName)
+    {
+        this.familyName = familyName;
+    }
 
-	public String getGivenName() {
-		return givenName;
-	}
+    public String getGivenName()
+    {
+        return givenName;
+    }
 
-	public void setGivenName(String givenName) {
-		this.givenName = givenName;
-	}
+    public void setGivenName(final String givenName)
+    {
+        this.givenName = givenName;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public String getState()
+    {
+        return state;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setState(final String state)
+    {
+        this.state = state;
+    }
 
-	public String getCountry() {
-		return country;
-	}
+    public String getCountry()
+    {
+        return country;
+    }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+    public void setCountry(final String country)
+    {
+        this.country = country;
+    }
 
 }
