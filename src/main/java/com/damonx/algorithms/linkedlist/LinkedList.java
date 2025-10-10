@@ -148,7 +148,7 @@ public class LinkedList {
         return slow;
     }
 
-    public void removeDuplicates() {
+    public void removeDuplicatesBySet() {
         Set<Integer> values = new HashSet<>();
         Node previous = null;
         Node current = head;
@@ -160,6 +160,59 @@ public class LinkedList {
                 values.add(current.value);
                 previous = current;
             }
+            current = current.next;
+        }
+    }
+
+    public void removeDuplicates() {
+        // Step 1: Start at the beginning of the list.
+        // Initialize `current` to point to the head node.
+        // `current` will be used to navigate through the list,
+        // one node at a time, starting from the head node.
+        Node current = head;
+
+        // Step 2: Check if we've reached the end of the list.
+        // We loop until `current` becomes null, which means
+        // we've checked all nodes for duplicates.
+        while (current != null) {
+
+            // Step 3: Set up a runner node.
+            // Initialize `runner` to the `current` node.
+            // We'll use `runner` to scan ahead and find duplicates
+            // of the `current` node.
+            Node runner = current;
+
+            // Step 4: Loop through the remaining nodes.
+            // `runner.next` will be null at the end of the list.
+            while (runner.next != null) {
+
+                // Step 5: Compare nodes.
+                // Check if `runner.next` (the next node) has the
+                // same value as `current`.
+                if (runner.next.value == current.value) {
+
+                    // Step 6: Remove duplicate.
+                    // If we find a duplicate, we skip it by
+                    // setting `runner.next` to `runner.next.next`.
+                    runner.next = runner.next.next;
+
+                    // Step 7: Update list length.
+                    // We removed a node, so decrease the list length
+                    // by 1 to keep it accurate.
+                    length -= 1;
+
+                } else {
+
+                    // Step 8: Move to the next node.
+                    // If the next node is not a duplicate,
+                    // move `runner` to the next node to continue.
+                    runner = runner.next;
+                }
+            }
+
+            // Step 9: Move to the next unique node.
+            // After checking all nodes for duplicates of the
+            // current value, move `current` to the next node.
             current = current.next;
         }
     }
