@@ -217,4 +217,20 @@ public class LinkedList {
         }
     }
 
+    /**
+     * The method aims to convert a binary number, represented by the linked list, into its decimal form.
+     *  1->1->1  => 7
+     *  1->1  => 3
+     * @return
+     */
+    public int binaryToDecimal() {
+        int num = 0;
+        Node current = head;
+        while (current != null) {
+            num = num * 2 + current.value;
+            current = current.next;
+        }
+        return num;
+    }
+
 }
