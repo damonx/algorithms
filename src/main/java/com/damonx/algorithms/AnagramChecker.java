@@ -86,10 +86,10 @@ public final class AnagramChecker {
     public static boolean isAnagramByCosine(final String strA, final String strB) {
         if (isInvalidInput(strA, strB)) return false;
 
-        Map<Integer, Long> freqA = toFrequencyMap(strA);
-        Map<Integer, Long> freqB = toFrequencyMap(strB);
+        final Map<Integer, Long> freqA = toFrequencyMap(strA);
+        final Map<Integer, Long> freqB = toFrequencyMap(strB);
 
-        Set<Integer> allChars = new HashSet<>();
+        final Set<Integer> allChars = new HashSet<>();
         allChars.addAll(freqA.keySet());
         allChars.addAll(freqB.keySet());
 
