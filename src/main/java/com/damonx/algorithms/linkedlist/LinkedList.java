@@ -233,4 +233,119 @@ public class LinkedList {
         return num;
     }
 
+    /**
+     * The function partitionList takes an integer x as a parameter and modifies the current linked list in place according to the specified criteria.
+     * If the linked list is empty (i.e., head is null), the function should return immediately without making any changes.
+     *
+     * Example 1:
+     * Input:
+     * Linked List: 3 -> 8 -> 5 -> 10 -> 2 -> 1 x: 5
+     *
+     * Process:
+     * Values less than 5: 3, 2, 1
+     *
+     * Values greater than or equal to 5: 8, 5, 10
+     * Output:
+     * Linked List: 3 -> 2 -> 1 -> 8 -> 5 -> 10
+     */
+    public void partitionList(int x) {
+        if (length == 0) {
+            return;
+        }
+        Node dummy1 = new Node(0);
+        Node dummy2 = new Node(0);
+        Node prev1 = dummy1;
+        Node prev2 = dummy2;
+        Node current = head;
+        while (current != null) {
+            if (current.value < x) {
+                prev1.next = current;
+                prev1 = current;
+            } else {
+                prev2.next = current;
+                prev2 = current;
+            }
+            current = current.next;
+        }
+        prev2.next = null;
+        prev1.next = dummy2.next;
+        head = dummy1.next;
+        dummy1 = null;
+        dummy2 = null;
+    }
+
+    /**
+     * Given the following linked list:
+     * 1 -> 2 -> 3 -> 4 -> 5
+     * Calling reverseBetween(1, 3) should result in the following modified linked list:
+     * 1 -> 4 -> 3 -> 2 -> 5
+     */
+    public void reverseBetween(int startIndex, int endIndex) {
+        // Check: If linked list is empty, nothing to reverse.
+        // Exit the method.
+        if (head == null) return;
+
+        // Create a 'dummyNode' that precedes the head.
+        // Simplifies handling edge cases.
+        Node dummyNode = new Node(0);
+        dummyNode.next = head;
+
+        // 'previousNode' is used to navigate to the node
+        // right before our sublist begins.
+        Node previousNode = dummyNode;
+
+        // Move 'previousNode' to node just before sublist.
+        for (int i = 0; i < startIndex; i++) {
+            previousNode = previousNode.next;
+        }
+
+        // 'currentNode' marks the first node of sublist.
+        Node currentNode = previousNode.next;
+
+        // Loop reverses the section from startIndex to endIndex.
+        for (int i = 0; i < endIndex - startIndex; i++) {
+
+            // 'nodeToMove' is the node we'll move to sublist start.
+            Node nodeToMove = currentNode.next;
+
+            // Detach 'nodeToMove' from its current position.
+            currentNode.next = nodeToMove.next;
+
+            // Attach 'nodeToMove' at the beginning of the sublist.
+            nodeToMove.next = previousNode.next;
+
+            // Move 'nodeToMove' to the start of our sublist.
+            previousNode.next = nodeToMove;
+        }
+
+        // Adjust 'head' if the first node was part of sublist.
+        head = dummyNode.next;
+    }
+
+    /**
+     * Input List: 1 -> 2 -> 3 -> 4
+     * Final result: 2 → 1 → 4 → 3
+     */
+    public void swapPairs() {
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node previous = dummy;
+        Node first = head;
+
+        while(first != null && first.next != null) {
+            Node second = first.next;
+
+            // Perform the swap
+            previous.next = second;
+            first.next = second.next;
+            second.next = first;
+
+            // Move pointers
+            previous = first;
+            first = first.next;
+        }
+
+        head = dummy.next;
+    }
+
 }
