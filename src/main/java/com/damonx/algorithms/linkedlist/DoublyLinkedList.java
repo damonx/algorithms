@@ -108,6 +108,89 @@ public class DoublyLinkedList {
         return temp;
     }
 
+    public Node get(int index) {
+        if (index >= length || index < 0) {
+            return null;
+        }
+        Node temp = head;
+        if (index < length / 2) {
+            for (int i = 0; i < index; i++) {
+                temp = temp.next;
+            }
+        } else {
+            temp = tail;
+            for (int i = length - 1; i > index; i-- ) {
+                temp = temp.prev;
+            }
+        }
+        return temp;
+    }
+
+    public boolean set(int index, int value) {
+       final Node temp = get(index);
+       if (temp != null) {
+           temp.value = value;
+           return true;
+       }
+       return false;
+    }
+
+    public boolean insert(int index, int value) {
+        if (index > length || index < 0) {
+            return false;
+        }
+        if (index == 0) {
+            prepend(value);
+            return true;
+        }
+        if (index == length) {
+            append(value);
+            return true;
+        }
+        final Node newNode = new Node(value);
+        Node before = get(index - 1);
+        Node after = before.next;
+        newNode.prev = before;
+        newNode.next = after;
+        before.next = newNode;
+        after.prev = newNode;
+        length++;
+        return true;
+    }
+
+    public Node remove(int index) {
+        if (index >= length || index < 0) {
+            return null;
+        }
+        if (index == 0) {
+            return removeFirst();
+        }
+        if (index == length - 1) {
+            return removeLast();
+        }
+        Node temp = get(index);
+        temp.prev.next = temp.next;
+        temp.next.prev = temp.prev;
+        length--;
+        return temp;
+    }
+
+    public boolean isPalindrome() {
+        if (head == null || length == 1) {
+            return true;
+        }
+        Node forward = head;
+        Node backward = tail;
+        while (forward != backward && forward.prev != backward) {
+            if (forward.value != backward.value) {
+                return false;
+            }
+            forward = forward.next;
+            backward = backward.prev;
+        }
+        return true;
+    }
+
     public static void main(String[] args)
     {
         final DoublyLinkedList doublyLinkedList = new DoublyLinkedList(7);
