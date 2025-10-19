@@ -176,19 +176,31 @@ public class DoublyLinkedList {
     }
 
     public boolean isPalindrome() {
-        if (head == null || length == 1) {
-            return true;
-        }
-        Node forward = head;
-        Node backward = tail;
-        while (forward != backward && forward.prev != backward) {
-            if (forward.value != backward.value) {
-                return false;
-            }
-            forward = forward.next;
-            backward = backward.prev;
+        if (length <= 1) return true;
+
+        Node forwardNode = head;
+        Node backwardNode = tail;
+        for (int i = 0; i < length / 2; i++) {
+            if (forwardNode.value != backwardNode.value) return false;
+            forwardNode = forwardNode.next;
+            backwardNode = backwardNode.prev;
         }
         return true;
+//        if (head == null || length == 1) {
+//            return true;
+//        }
+//        Node forward = head;
+//        Node backward = tail;
+//        while (forward != backward && forward.prev != backward) {
+//            if (forward.value != backward.value) {
+//                return false;
+//            }
+//            forward = forward.next;
+//            backward = backward.prev;
+//        }
+//        return true;
+
+
     }
 
     public static void main(String[] args)
