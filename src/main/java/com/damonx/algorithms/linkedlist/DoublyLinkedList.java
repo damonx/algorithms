@@ -199,8 +199,23 @@ public class DoublyLinkedList {
 //            backward = backward.prev;
 //        }
 //        return true;
+    }
 
-
+    public void reverse() {
+        if (length <= 1) {
+            return;
+        }
+        Node temp = null;
+        Node current = head;
+        while (current != null) {
+            current.prev = current.next;
+            current.next = temp;
+            temp = current;
+            current = current.prev;
+        }
+        temp = head;
+        head = tail;
+        tail = temp;
     }
 
     public static void main(String[] args)
