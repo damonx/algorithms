@@ -218,6 +218,55 @@ public class DoublyLinkedList {
         tail = temp;
     }
 
+    public void partitionList(int x) {
+        //   +===================================================+
+        //   |               WRITE YOUR CODE HERE                |
+        //   | Description:                                      |
+        //   | - Partitions a doubly linked list around a value  |
+        //   |   `x`.                                            |
+        //   | - Nodes with values less than `x` come before     |
+        //   |   nodes with values greater than or equal to `x`. |
+        //   |                                                   |
+        //   | Behavior:                                         |
+        //   | - Uses two dummy nodes to build two sublists:     |
+        //   |   one for < x, one for >= x.                      |
+        //   | - Traverses the list, linking nodes to the        |
+        //   |   appropriate sublist and updating prev pointers. |
+        //   | - Joins the two sublists together.                |
+        //   | - Updates the head and resets head.prev to null.  |
+        //
+        if (head == null) {
+            return;
+        }
+        Node dummy1 = new Node(0);
+        Node dummy2 = new Node(0);
+        Node prev1 = dummy1;
+        Node prev2 = dummy2;
+        Node current = head;
+        while (current != null) {
+            if (current.value < x) {
+                prev1.next = current;
+                current.prev = prev1;
+                prev1 = current;
+            } else {
+                prev2.next = current;
+                current.prev = prev2;
+                prev2 = current;
+            }
+            current = current.next;
+        }
+        prev2.next = null;
+        prev1.next = dummy2.next;
+        if (dummy2.next != null) {
+            dummy2.next.prev = prev1;
+        }
+
+        head = dummy1.next;
+        if (head != null) {
+            head.prev = null;
+        }
+    }
+
     public static void main(String[] args)
     {
         final DoublyLinkedList doublyLinkedList = new DoublyLinkedList(7);
