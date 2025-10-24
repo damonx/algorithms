@@ -1,4 +1,4 @@
-package com.damonx.algorithms.stack;
+package com.damonx.algorithms.stackqueue;
 
 public class Main {
     public static void main(String[] args) {
