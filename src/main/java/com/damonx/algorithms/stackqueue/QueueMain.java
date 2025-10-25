@@ -10,5 +10,11 @@ public class QueueMain
         myqueue.getLast();
         myqueue.getLength();
         myqueue.printQueue();
+
+        myqueue.enQueue(8);
+        myqueue.printQueue();
+
+        System.out.println("Dequed item: " + myqueue.deQueue().value);
+        myqueue.printQueue();
     }
 }
