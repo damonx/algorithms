@@ -80,4 +80,21 @@ public class ArrayListStack<T> {
         }
         return stack.isEmpty();
     }
+
+    public static void sortStack(ArrayListStack<Integer> stack) {
+        if (stack.isEmpty() || stack.size() == 1) {
+            return;
+        }
+        ArrayListStack<Integer> additionalStack = new ArrayListStack<>();
+        while (!stack.isEmpty()){
+            Integer temp = stack.pop();
+            while (!additionalStack.isEmpty() && additionalStack.peek() > temp) {
+                stack.push(additionalStack.pop());
+            }
+            additionalStack.push(temp);
+        }
+        while (!additionalStack.isEmpty()) {
+            stack.push(additionalStack.pop());
+        }
+    }
 }
