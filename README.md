@@ -5,7 +5,7 @@ Ideal for learning, interview prep, or refreshing your understanding of fundamen
 
 ---
 
-## 📂 What’s Inside
+## What’s Inside
 
 - **Sorting & Searching** — QuickSort, MergeSort, Binary Search, etc.  
 - **Data Structures** — Linked Lists, Trees, Graphs, Heaps, Hashing  
@@ -39,7 +39,7 @@ Each problem typically includes:
 
 ---
 
-## 🧠 Purpose & Vision
+## Purpose & Vision
 
 I created this repo to:
 
