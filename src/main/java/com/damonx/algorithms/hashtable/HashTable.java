@@ -1,5 +1,8 @@
 package com.damonx.algorithms.hashtable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HashTable
 {
     private int size = 7;
@@ -23,6 +26,49 @@ public class HashTable
         }
     }
 
+    public void set(final String key, final int value)
+    {
+        final int index = hash(key);
+        final Node newNode = new Node(key, value);
+        if (dataMap[index] == null) {
+            dataMap[index] = newNode;
+        } else {
+            Node temp = dataMap[index];
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
+    }
+
+    public int get(final String key)
+    {
+        final int index = hash(key);
+        Node temp = dataMap[index];
+        while (temp != null) {
+            if (temp.key.equals(key)) {
+                return temp.value;
+            }
+            temp = temp.next;
+        }
+        return -1;
+    }
+
+    public List<String> keys()
+    {
+        List <String> allKeys = new ArrayList();
+        for (int i = 0; i < dataMap.length; i++) {
+            Node temp = dataMap[i];
+            while (temp != null) {
+                allKeys.add(temp.key);
+                temp = temp.next;
+            }
+        }
+        return allKeys;
+    }
+
+
+
     public void printTable()
     {
         for (int i = 0; i < dataMap.length; i++)
@@ -37,15 +83,13 @@ public class HashTable
         }
     }
 
-    private int hash(String key)
-    {
+    private int hash(String key) {
         int hash = 0;
         char[] keyChars = key.toCharArray();
-        for (int i = 0; i < keyChars.length; i++)
-        {
+        for (int i = 0; i < keyChars.length; i++) {
             int asciiValue = keyChars[i];
-            hash = (hash + asciiValue * 23) % dataMap.length;
+            hash += asciiValue * 23 * (i + 1); // add positional weight
         }
-        return hash;
+        return Math.abs(hash) % dataMap.length;
     }
 }
