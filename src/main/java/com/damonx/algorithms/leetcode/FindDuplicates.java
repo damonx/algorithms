@@ -1,5 +1,7 @@
 package com.damonx.algorithms.leetcode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +33,42 @@ public class FindDuplicates
             }
         }
         return null;
+    }
+
+    public static List<List<String>> groupAnagrams(String[] strings) {
+        final Map<String, List<String>> anagramGroups = new HashMap<>();
+
+        for (String string : strings) {
+            char[] chars = string.toCharArray();
+            Arrays.sort(chars);
+            String canonical = new String(chars);
+            if (anagramGroups.containsKey(canonical)) {
+                anagramGroups.get(canonical).add(string);
+            } else {
+                List<String> group = new ArrayList<>();
+                group.add(string);
+                anagramGroups.put(canonical, group);
+            }
+//            anagramGroups.computeIfAbsent(new String(chars), k -> new ArrayList<>()).add(string);
+        }
+
+        return new ArrayList<>(anagramGroups.values());
+    }
+
+    public static int[] twoSum(int[] nums, int target) {
+        final Map<Integer, Integer> numMap = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            int complement = target - num;
+
+            if (numMap.containsKey(complement)) {
+                return new int[]{numMap.get(complement), i};
+            }
+            numMap.put(num, i);
+        }
+
+        return new int[]{};
     }
 
     public static void main(String[] args)
