@@ -49,7 +49,8 @@ public class FindDuplicates
                 group.add(string);
                 anagramGroups.put(canonical, group);
             }
-//            anagramGroups.computeIfAbsent(new String(chars), k -> new ArrayList<>()).add(string);
+            // Alternatively:
+            // anagramGroups.computeIfAbsent(new String(chars), k -> new ArrayList<>()).add(string);
         }
 
         return new ArrayList<>(anagramGroups.values());
