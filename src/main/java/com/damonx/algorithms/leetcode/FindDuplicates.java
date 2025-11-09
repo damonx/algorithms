@@ -72,6 +72,46 @@ public class FindDuplicates
         return new int[]{};
     }
 
+    /**
+     * Finds a contiguous subarray within the given array whose elements sum up to the specified target value.
+     * <p>
+     * The method returns a two-element integer array representing the <b>starting</b> and <b>ending</b> indices
+     * of the first subarray found whose sum equals the target. If no such subarray exists, an empty array is returned.
+     * <p>
+     * This implementation uses a prefix sum and a hash map to achieve an efficient O(n) time complexity.
+     *
+     * <h3>Example:</h3>
+     * <pre>{@code
+     * int[] nums = {1, 2, 3, 4, 5};
+     * int target = 9;
+     * int[] result = subarraySum(nums, target);
+     *
+     * // Output: [1, 3]
+     * // Explanation: nums[1] + nums[2] + nums[3] = 2 + 3 + 4 = 9
+     * System.out.println("[" + result[0] + ", " + result[1] + "]");
+     * }</pre>
+     *
+     * @param nums   the input array of integers
+     * @param target the target sum to find in the contiguous subarray
+     * @return a two-element array containing the start and end indices of the subarray that sums to the target,
+     *         or an empty array if no such subarray exists
+     */
+    public static int[] subarraySum(int[] nums, int target) {
+        final Map<Integer, Integer> sumIndex = new HashMap<>();
+        sumIndex.put(0, -1);
+        int currentSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+            if (sumIndex.containsKey(currentSum - target)) {
+                return new int[] {sumIndex.get(currentSum - target) + 1, i};
+            }
+            sumIndex.put(currentSum, i);
+        }
+
+        return new int[]{};
+    }
+
     public static void main(String[] args)
     {
         System.out.println("These tests confirm findDuplicates() correctly");
