@@ -9,7 +9,6 @@ import java.util.function.Function;
  */
 public class DynamicFunctionalStrategy {
 
-    // Store strategies in a mutable HashMap (instead of Map.of)
     private static final Map<String, Function<Double, Double>> discountStrategies = new HashMap<>();
 
     static {
