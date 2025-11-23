@@ -52,6 +52,40 @@ public class SetMain
         return pairs;
     }
 
+    /*
+    Given an unsorted array of integers, write a function that finds the length of the
+    longestConsecutiveSequence (i.e., a sequence of integers in which each element is one
+    greater than the previous element).
+
+     Input: int[] nums = [100, 4, 200, 1, 3, 2]
+     Output: 4
+     Explanation: The longest consecutive sequence in the input array is [1, 2, 3, 4], and its length is 4.
+    */
+    public static int longestConsecutiveSequence(final int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        final Set<Integer> numSet = new HashSet<>();
+
+        for (int num: nums) {
+            numSet.add(num);
+        }
+        int longestStreak = 0;
+        for (int num: numSet) {
+            if (!numSet.contains(num - 1)) {
+                int currentNum = num;
+                int currentStreak = 1;
+                while (numSet.contains(currentNum + 1)) {
+                    currentNum++;
+                    currentStreak++;
+                }
+                longestStreak = Math.max(longestStreak, currentStreak);
+            }
+        }
+        return longestStreak;
+    }
+
+
     public static void main(String[] args) {
         System.out.println("These tests confirm hasUniqueChars() returns");
         System.out.println("true if all characters are unique and false");
