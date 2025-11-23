@@ -1,6 +1,8 @@
 package com.damonx.algorithms.set;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SetMain
@@ -15,6 +17,39 @@ public class SetMain
             charSet.add(ch);
         }
         return true;
+    }
+
+    /**
+     * Input:
+     * arr1: An integer array
+     * arr2: An integer array
+     * target: An integer value
+     *
+     * Output:
+     *
+     * Return a list of integer arrays, where each array contains a pair of integers,
+     * one from arr1 and the other from arr2, that sum up to the target value.
+     * @param arr1
+     * @param arr2
+     * @param target
+     * @return
+     */
+    public static List<int[]> findPairs(int[] arr1, int[] arr2, int target) {
+        if (arr1.length == 0 || arr2.length == 0) {
+            return List.of();
+        }
+        final List<int[]> pairs = new ArrayList<>();
+        final Set<Integer> mySet = new HashSet<>();
+        for (int num : arr1) {
+            mySet.add(num);
+        }
+        for (int num: arr2) {
+            final int complement = target - num;
+            if (mySet.contains(complement)) {
+                pairs.add(new int[]{complement, num});
+            }
+        }
+        return pairs;
     }
 
     public static void main(String[] args) {
