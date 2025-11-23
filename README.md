@@ -1,4 +1,4 @@
-# Damon’s Algorithms Library
+# Algorithms Library
 
 A curated repository of **classic algorithm & data structure problems** implemented in Java.  
 Ideal for learning, interview prep, or refreshing your understanding of fundamental algorithms.
