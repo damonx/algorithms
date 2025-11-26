@@ -1,5 +1,7 @@
 package com.damonx.algorithms.graph;
 
+import org.apache.commons.lang3.ObjectUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,26 @@ public class Graph
     {
         if (adjList.get(vertex) == null) {
             adjList.put(vertex, new ArrayList<>());
+            return true;
+        }
+        return false;
+    }
+
+    public boolean addEdge(final String vertex1, final String vertex2)
+    {
+        if (ObjectUtils.allNotNull(adjList.get(vertex1), adjList.get(vertex2))) {
+            adjList.get(vertex1).add(vertex2);
+            adjList.get(vertex2).add(vertex1);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean removeEdge(final String vertex1, final String vertex2)
+    {
+        if (ObjectUtils.allNotNull(adjList.get(vertex1), adjList.get(vertex2))) {
+            adjList.get(vertex1).remove(vertex2);
+            adjList.get(vertex2).remove(vertex1);
             return true;
         }
         return false;
