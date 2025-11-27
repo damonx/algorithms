@@ -43,6 +43,18 @@ public class Graph
         return false;
     }
 
+    public boolean removeVertex(final String vertex)
+    {
+         if (!adjList.containsKey(vertex)) {
+             return false;
+         }
+         for (String otherVertex : adjList.get(vertex)) {
+             adjList.get(otherVertex).remove(vertex);
+         }
+         adjList.remove(vertex);
+         return true;
+    }
+
     public void printGraph()
     {
         System.out.println(adjList);
