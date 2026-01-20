@@ -112,19 +112,19 @@ public final class AnagramChecker {
     }
 
     // Helper methods
-    private static Map<Integer, Long> toFrequencyMap(String str) {
+    private static Map<Integer, Long> toFrequencyMap(final String str) {
         return str.chars()
             .boxed()
             .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
     }
 
-    private static boolean isInvalidInput(String strA, String strB) {
+    private static boolean isInvalidInput(final String strA, final String strB) {
         return strA == null || strB == null || strA.length() != strB.length();
     }
 
     /** Simple demo and verification */
     public static void main(String[] args) {
-        String[][] tests = {
+        final String[][] tests = {
             {"listen", "silent"},
             {"triangle", "integral"},
             {"apple", "papel"},
@@ -132,7 +132,7 @@ public final class AnagramChecker {
             {"abcd", "abcde"}
         };
 
-        for (String[] pair : tests) {
+        for (final String[] pair : tests) {
             String a = pair[0], b = pair[1];
             System.out.printf("'%s' vs '%s' -> Map:%s, Sort:%s, Array:%s, Cosine:%s%n",
                 a, b,
