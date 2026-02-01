@@ -2,6 +2,9 @@ package com.damonx.algorithms;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+/**
+A clever algorithm to remove duplicates in an array.
+*/
 public class RemoveDuplicates {
 
 	public static void main(final String[] args) {
