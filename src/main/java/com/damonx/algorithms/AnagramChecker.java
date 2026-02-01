@@ -28,10 +28,12 @@ public final class AnagramChecker {
      * Uses character frequency maps and compares them directly.
      */
     public static boolean isAnagramByMap(final String strA, final String strB) {
-        if (isInvalidInput(strA, strB)) return false;
+        if (isInvalidInput(strA, strB)) {
+            return false;
+        }
 
-        Map<Integer, Long> freqA = toFrequencyMap(strA);
-        Map<Integer, Long> freqB = toFrequencyMap(strB);
+        final Map<Integer, Long> freqA = toFrequencyMap(strA);
+        final Map<Integer, Long> freqB = toFrequencyMap(strB);
 
         return freqA.equals(freqB);
     }
@@ -41,14 +43,16 @@ public final class AnagramChecker {
      * Sorts both strings and checks for equality.
      */
     public static boolean isAnagramBySort(final String strA, final String strB) {
-        if (isInvalidInput(strA, strB)) return false;
-
-        String sortedA = strA.chars()
+        if (isInvalidInput(strA, strB)) {
+            return false;
+        }
+        
+        final String sortedA = strA.chars()
             .sorted()
             .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
             .toString();
 
-        String sortedB = strB.chars()
+        final String sortedB = strB.chars()
             .sorted()
             .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
             .toString();
@@ -61,9 +65,11 @@ public final class AnagramChecker {
      * Uses a fixed 128-size frequency array (for ASCII).
      */
     public static boolean isAnagramByArray(final String strA, final String strB) {
-        if (isInvalidInput(strA, strB)) return false;
+        if (isInvalidInput(strA, strB)) {
+            return false;
+        }
 
-        int[] counts = new int[128]; // ASCII range
+        final int[] counts = new int[128]; // ASCII range
 
         for (int i = 0; i < strA.length(); i++) {
             counts[strA.charAt(i)]++;
